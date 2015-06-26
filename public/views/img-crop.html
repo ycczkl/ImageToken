@@ -1,0 +1,38 @@
+<!--drag and drop zone-->
+<div ng-show="showDropZone()" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragOverClass($event)"
+     style="width:300px; height:300px" class="drop-box">
+    <img class="crop-img" ng-repeat="photo in imgArray" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
+         ng-show="isActive($index)" ng-src={{photo.url}} alt=""/>
+    <!-- prev / next controls -->
+    <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+    <a class="arrow next" href="#" ng-click="showNext()"></a>
+</div>
+<!--crop zone-->
+<div ng-show="!showDropZone()">
+    <img class="crop_me" ng-src="{{base64}}"/>
+    <a href="" id="setCropFunction"></a>
+
+    <div class="results">
+        <b>X</b>: <span id="crop_x"></span><br/>
+        <b>Y</b>: <span id="crop_y"></span><br/>
+        <b>W</b>: <span id="crop_w"></span><br/>
+        <b>H</b>: <span id="crop_h"></span><br/>
+    </div>
+    <button type="button" class="btn btn-primary uploadBtn" data-ng-click="upload_cropedimg()">
+        upload
+    </button>
+</div>
+
+<div class="container slider">
+
+
+
+
+    <!-- extra navigation controls -->
+    <ul class="imagnav">
+        <li ng-repeat="photo in imgArray" ng-class="{'active':isActive($index)}">
+            <img src="{{photo.url}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
+        </li>
+    </ul>
+
+</div>
